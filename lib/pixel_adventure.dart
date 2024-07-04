@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:pixel_adventure/components/level.dart';
+import 'package:pixel_adventure/components/player.dart';
 
-class PixelAdventure extends FlameGame {
+class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents {
   @override
   Color backgroundColor() {
     return const Color(0xff211f30);
@@ -13,7 +15,8 @@ class PixelAdventure extends FlameGame {
 
   late final CameraComponent cam;
 
-  final world = Level();
+  // ignore: annotate_overrides
+  final world = Level(player: Player(character: 'Virtual Guy'));
 
   @override
   FutureOr<void> onLoad() async {
